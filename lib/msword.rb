@@ -4,6 +4,7 @@ require 'win32ole'
 require 'Win32API'
 
 module MSWordUtils
+# Word contants
   class WdSaveOptions
     WdDoNotSaveChanges = 0
     WdSaveChanges = -1
@@ -34,7 +35,7 @@ module MSWordUtils
     end
   end
   
-  # Application
+  # Application instance
   class Word
     def initialize
       @app = WIN32OLE.new('Word.Application')

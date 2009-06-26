@@ -1,0 +1,62 @@
+#!/usr/bin/ruby
+# ruby rakefile for building test_off gem
+# and running tests
+# running the tests requires rspec and cucumber to be installed
+
+require 'rake/clean'
+require 'rubygems'
+require 'rake/gempackagetask'
+require 'spec/rake/spectask'
+
+# filelists
+CLEAN.include('pkg')
+
+directory 'pkg'
+
+# ----------------------
+# gem specification
+# ----------------------
+spec = Gem::Specification.new do |s|
+    s.platform  =   Gem::Platform::RUBY
+    s.name      =   "test_off"
+    s.version   =   "0.1"
+    s.author    =   "Edward Sumitra"
+    s.email     =   "ed_sumitra@yahoo.com"
+    s.summary   =   "A library for Behavior Driven development of VBA code"
+    s.files     =   FileList['lib/*.rb', 'test/**/*.txt'].to_a
+    s.require_path  =   "lib"
+#    s.bindir    = 'bin'
+#    s.executables = ['pdf_client_console.rb','pdf_server.rb']
+    s.test_files = Dir.glob('test/**')
+    s.has_rdoc  =   false
+end
+
+Rake::GemPackageTask.new(spec) do |pkg|
+    pkg.need_tar = true
+end
+
+# ----------------------
+# build gem
+# ----------------------
+desc 'build installable gem'
+task :gem => "pkg/#{spec.name}-#{spec.version}.gem" do
+    puts "generated gem pkg/#{spec.name}-#{spec.version}.gem"
+end
+
+# ----------------------
+# run rspec tests
+# ----------------------
+
+desc "Run RSpec tests"
+Spec::Rake::SpecTask.new('rspec_tests') do |t|
+  t.spec_files = FileList['test/spec/*.rb']
+  t.spec_opts = ["--format html:tests/reports/spec/rspec_tests.html"]
+  t.fail_on_error = false
+end
+
+# ----------------------
+# run cucumber tests
+# ----------------------
+desc 'run cucumber tests'
+task :cuke_tests do
+end

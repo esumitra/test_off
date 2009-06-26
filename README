@@ -1,0 +1,5 @@
+This project contains classes and functions
+to add unit testing frameworks to VBA code.
+Examples are provided in the examples dir
+Install using the standard gem command
+gem install test_off

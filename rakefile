@@ -7,6 +7,7 @@ require 'rake/clean'
 require 'rubygems'
 require 'rake/gempackagetask'
 require 'spec/rake/spectask'
+require 'cucumber/rake/task'
 
 # filelists
 CLEAN.include('pkg')
@@ -58,5 +59,8 @@ end
 # run cucumber tests
 # ----------------------
 desc 'run cucumber tests'
-task :cuke_tests do
+Cucumber::Rake::Task.new do |t|
+#  t.cucumber_opts = %w{--format html --out report.html -q}
+  t.cucumber_opts = %w{--format pretty -q --guess}
 end
+

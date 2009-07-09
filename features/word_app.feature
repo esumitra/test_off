@@ -1,4 +1,4 @@
-@application
+@word
 Feature: Word Application Feature
   Provide easy interface to the
   "Word.Application" COM object
@@ -25,10 +25,10 @@ Feature: Word Application Feature
 
   Scenario: Use application to call function with no arguments
     Given nothing
-    When I pass a block to execute macro Module1.SimpleMacroNoParams in document at D:/prototypes/ruby/bdd/ca/tests/features/data/DocWithMacros.doc
+    When I pass a block to execute macro Module1.SimpleMacroNoParams in document at ../data/DocWithMacros.doc
     Then I should get the no arg return value true
 
   Scenario: Use application to call a function with multiple arguments
     Given nothing
-    When I pass a block to execute macro Module1.SimpleMacroMultipleParams with arguments string1 and string2 in document at D:/prototypes/ruby/bdd/ca/tests/features/data/DocWithMacros.doc
+    When I pass a block to execute macro Module1.SimpleMacroMultipleParams with arguments string1 and string2 in document at ../data/DocWithMacros.doc
     Then I should get the multiple args return value string1+string2

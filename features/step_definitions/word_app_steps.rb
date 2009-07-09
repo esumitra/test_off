@@ -1,4 +1,4 @@
-require 'D:/prototypes/ruby/bdd/ca/lib/msword.rb'
+require File.dirname(__FILE__) + '/../../lib/msword.rb'
 
 include MSWordUtils
 
@@ -61,7 +61,8 @@ end
 #-----------------------------------------
 When /^I pass a block to execute macro (.+) in document at (.+)$/ do |macro_name, filename|
   @result = Word.open{ |app| 
-    macroDoc = app.Documents.Open(filename)
+    filepath = File.expand_path(File.dirname(__FILE__) + '/' + filename)
+    macroDoc = app.Documents.Open(filepath)
     rs = app.Run(macro_name)
     macroDoc.Close(0)
     rs
@@ -75,8 +76,9 @@ end
 # Scenario: Call a function with multiple arguments in a doc
 #-----------------------------------------
 When /^I pass a block to execute macro (.+) with arguments (.+) and (.+) in document at (.+)$/ do |macro_name, arg1,arg2, filename|
-  @result = Word.open{ |app| 
-    macroDoc = app.Documents.Open(filename)
+  @result = Word.open{ |app|
+    filepath = File.expand_path(File.dirname(__FILE__) + '/' + filename)
+    macroDoc = app.Documents.Open(filepath)
     rs = app.Run(macro_name,arg1,arg2)
     macroDoc.Close(0)
     rs

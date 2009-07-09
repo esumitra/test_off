@@ -1,10 +1,10 @@
-require 'D:/prototypes/ruby/bdd/ca/lib/msword.rb'
+require File.dirname(__FILE__) + '/../../lib/msword.rb'
 
 include MSWordUtils
 
-NormalDocPath = "D:/prototypes/ruby/bdd/ca/tests/features/data/DocWithoutMacros.doc"
-MacroDocPath= "D:/prototypes/ruby/bdd/ca/tests/features/data/DocWithMacros.doc"
-NewDocPath="D:/prototypes/ruby/bdd/ca/tests/features/data"
+NormalDocPath = File.expand_path(File.dirname(__FILE__) + "/../data/DocWithoutMacros.doc")
+MacroDocPath= File.expand_path(File.dirname(__FILE__) + "/../data/DocWithMacros.doc")
+NewDocPath=File.expand_path(File.dirname(__FILE__) + "/../data")
 
 Given /^an existing word document$/ do
   File.exists?(NormalDocPath).should be_true 

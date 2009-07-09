@@ -20,14 +20,12 @@ directory 'pkg'
 spec = Gem::Specification.new do |s|
     s.platform  =   Gem::Platform::RUBY
     s.name      =   "test_off"
-    s.version   =   "0.1"
+    s.version   =   "0.2"
     s.author    =   "Edward Sumitra"
     s.email     =   "ed_sumitra@yahoo.com"
     s.summary   =   "A library for Behavior Driven development of VBA code"
     s.files     =   FileList['lib/*.rb', 'test/**/*.txt'].to_a
     s.require_path  =   "lib"
-#    s.bindir    = 'bin'
-#    s.executables = ['pdf_client_console.rb','pdf_server.rb']
     s.test_files = Dir.glob('test/**')
     s.has_rdoc  =   false
 end
@@ -60,7 +58,6 @@ end
 # ----------------------
 desc 'run cucumber tests'
 Cucumber::Rake::Task.new do |t|
-#  t.cucumber_opts = %w{--format html --out report.html -q}
   t.cucumber_opts = %w{--format pretty -q --guess}
 end
 

@@ -24,9 +24,9 @@ spec = Gem::Specification.new do |s|
     s.author    =   "Edward Sumitra"
     s.email     =   "ed_sumitra@yahoo.com"
     s.summary   =   "A library for Behavior Driven development of VBA code"
-    s.files     =   FileList['lib/*.rb', 'test/**/*.txt'].to_a
+    s.requirements = "MS Office, rspec and cucumber to run tests"
+    s.files     =   FileList['lib/*.rb', 'features/*.*','features/data/*.*','features/step_definitions/*.*','test/**/*.*'].to_a
     s.require_path  =   "lib"
-    s.test_files = Dir.glob('test/**')
     s.has_rdoc  =   false
 end
 
